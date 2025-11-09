@@ -8,7 +8,7 @@ import Footer from "../Components/Footer";
 const Homepage = () => {
   return (
     <div >
-      <div className="bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E]">
+      <div className="   bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E]">
         <Herosection></Herosection>
         <Getstrted></Getstrted>
       </div>

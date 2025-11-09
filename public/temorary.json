@@ -6,7 +6,7 @@
     "useCase": "NLP",
     "dataset": "Wikipedia",
     "description": "A transformer-based model for natural language processing tasks like text classification.",
-    "image": "https://i.ibb.co/bert-model.jpg",
+    "image": "https://i.ibb.co.com/cK34LDJJ/img14.jpg",
     "createdBy": "user1@example.com",
     "createdAt": "2025-10-28T11:54:00.000Z",
     "purchased": 10
@@ -18,7 +18,7 @@
     "useCase": "Computer Vision",
     "dataset": "ImageNet",
     "description": "A deep residual network model used for image classification and object detection.",
-    "image": "https://i.ibb.co/resnet.jpg",
+    "image": "https://i.ibb.co.com/zVKjKYsw/img15.jpg",
     "createdBy": "user2@example.com",
     "createdAt": "2025-10-29T09:10:00.000Z",
     "purchased": 7
@@ -30,7 +30,7 @@
     "useCase": "Text Generation",
     "dataset": "WebText",
     "description": "A large language model capable of generating coherent and context-aware text.",
-    "image": "https://i.ibb.co/gpt2.jpg",
+    "image": "https://i.ibb.co.com/SwgqK6nf/img16.jpg",
     "createdBy": "user3@example.com",
     "createdAt": "2025-10-30T14:21:00.000Z",
     "purchased": 15
@@ -42,7 +42,7 @@
     "useCase": "Object Detection",
     "dataset": "COCO",
     "description": "A real-time object detection model optimized for speed and accuracy.",
-    "image": "https://i.ibb.co/yolov5.jpg",
+    "image": "https://i.ibb.co.com/5XMLjMvF/img18.jpg",
     "createdBy": "user4@example.com",
     "createdAt": "2025-10-31T16:45:00.000Z",
     "purchased": 20
@@ -54,7 +54,7 @@
     "useCase": "Image Classification",
     "dataset": "ImageNet",
     "description": "A convolutional neural network with 16 layers widely used for image classification.",
-    "image": "https://i.ibb.co/vgg16.jpg",
+    "image": "https://i.ibb.co.com/8LnJfy8p/img19.jpg",
     "createdBy": "user5@example.com",
     "createdAt": "2025-11-01T10:12:00.000Z",
     "purchased": 5
@@ -66,7 +66,7 @@
     "useCase": "NLP",
     "dataset": "Wikipedia",
     "description": "A lighter and faster version of BERT with similar language understanding capabilities.",
-    "image": "https://i.ibb.co/distilbert.jpg",
+    "image": "https://i.ibb.co.com/201kmmCh/img20.png",
     "createdBy": "user6@example.com",
     "createdAt": "2025-11-02T09:00:00.000Z",
     "purchased": 8
@@ -78,7 +78,7 @@
     "useCase": "Image Recognition",
     "dataset": "ImageNet",
     "description": "A lightweight CNN designed for efficient mobile and embedded vision applications.",
-    "image": "https://i.ibb.co/mobilenetv2.jpg",
+    "image": "https://i.ibb.co.com/vC43L3qg/img21.png",
     "createdBy": "user7@example.com",
     "createdAt": "2025-11-03T11:15:00.000Z",
     "purchased": 13
@@ -90,7 +90,7 @@
     "useCase": "Text-to-Text",
     "dataset": "C4",
     "description": "A unified model that converts every NLP problem into a text-to-text format.",
-    "image": "https://i.ibb.co/t5-model.jpg",
+    "image": "https://i.ibb.co.com/mrjsh7pV/img22.png",
     "createdBy": "user8@example.com",
     "createdAt": "2025-11-04T08:55:00.000Z",
     "purchased": 9
@@ -102,7 +102,7 @@
     "useCase": "Multimodal Learning",
     "dataset": "LAION-400M",
     "description": "A vision-language model that connects images and text for zero-shot learning.",
-    "image": "https://i.ibb.co/clip-model.jpg",
+    "image": "https://i.ibb.co.com/bnh7bsZ/im23.jpg",
     "createdBy": "user9@example.com",
     "createdAt": "2025-11-05T13:30:00.000Z",
     "purchased": 11
@@ -114,7 +114,7 @@
     "useCase": "Image Classification",
     "dataset": "ImageNet",
     "description": "A highly efficient model family that scales depth, width, and resolution systematically.",
-    "image": "https://i.ibb.co/efficientnet.jpg",
+    "image": "https://i.ibb.co.com/Zz9sSpf7/img124.jpg",
     "createdBy": "user10@example.com",
     "createdAt": "2025-11-06T15:47:00.000Z",
     "purchased": 18
@@ -126,7 +126,7 @@
     "useCase": "NLP",
     "dataset": "BookCorpus",
     "description": "An autoregressive model outperforming BERT on various NLP benchmarks.",
-    "image": "https://i.ibb.co/xlnet.jpg",
+    "image": "https://i.ibb.co.com/DH7jzhj7/img25.webp",
     "createdBy": "user11@example.com",
     "createdAt": "2025-11-07T12:25:00.000Z",
     "purchased": 6
@@ -138,7 +138,7 @@
     "useCase": "Image Generation",
     "dataset": "FFHQ",
     "description": "A generative adversarial network that produces high-resolution realistic human faces.",
-    "image": "https://i.ibb.co/stylegan2.jpg",
+    "image": "https://i.ibb.co.com/3Y7MkJ9R/img26.jpg",
     "createdBy": "user12@example.com",
     "createdAt": "2025-11-08T09:42:00.000Z",
     "purchased": 14
@@ -150,7 +150,7 @@
     "useCase": "Speech Recognition",
     "dataset": "Common Voice",
     "description": "An automatic speech recognition model trained on diverse languages and accents.",
-    "image": "https://i.ibb.co/whisper.jpg",
+    "image": "https://i.ibb.co.com/5gJRN52y/img27.png",
     "createdBy": "user13@example.com",
     "createdAt": "2025-11-09T10:10:00.000Z",
     "purchased": 19
@@ -162,7 +162,7 @@
     "useCase": "Image Segmentation",
     "dataset": "PASCAL VOC",
     "description": "A semantic image segmentation model using atrous convolution and skip connections.",
-    "image": "https://i.ibb.co/deeplabv3.jpg",
+    "image": "https://i.ibb.co.com/JRzpMDsg/img28.png",
     "createdBy": "user14@example.com",
     "createdAt": "2025-11-10T16:05:00.000Z",
     "purchased": 4

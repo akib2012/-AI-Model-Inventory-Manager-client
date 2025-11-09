@@ -1,9 +1,12 @@
 import React from "react";
 
 const AddnewModel = () => {
+
+
+    
   return (
-    <div>
-      <div class="bg-[#1E293B]/70 backdrop-blur-lg rounded-2xl shadow-lg w-full  p-8 text-gray-200 border-2 border-amber-300 shadow-amber-50 max-w-6/12 m-auto ">
+    <div className="my-12">
+      <div class=" bg-[#1E293B]/70 backdrop-blur-lg rounded-2xl shadow-lg w-full  p-8 text-gray-200 border-2 border-amber-300 shadow-amber-50 mx-5 max-w-fit md:max-w-6/12 md:m-auto ">
         <h1 class="text-3xl font-bold text-[#6C63FF] mb-6 text-center">
           Add New Model
         </h1>

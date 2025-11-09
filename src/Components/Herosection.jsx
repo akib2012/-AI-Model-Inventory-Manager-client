@@ -16,7 +16,7 @@ import Slider from './Slider';
 
 const Herosection = () => {
   return (
- <div className='max-w-10/12 md:max-w-10/12 lg:max-w-6/12 m-auto h-fit  my-6 shadow-md border-2 border-amber-50  shadow-white'>
+ <div className='max-w-10/12 md:max-w-10/12 lg:max-w-6/12 m-auto h-fit   shadow-md border-2 border-amber-50  shadow-white'>
     <Swiper
         spaceBetween={30}
         centeredSlides={true}
