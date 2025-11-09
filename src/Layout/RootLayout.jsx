@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Components/Header';
 import { Outlet } from 'react-router';
+import Footer from '../Components/Footer';
 
 const RootLayout = () => {
     return (
@@ -8,12 +9,12 @@ const RootLayout = () => {
           <header>
               <Header></Header>
           </header>
-          <main className='bg-linear-to-r from-[#000814] to-[#001D6E] flex-1'>
+          <main className='flex-1 -mt-6 '>
             <Outlet></Outlet>
           </main>
 
           <footer>
-            <h4>this is footer</h4>
+             <Footer></Footer>
           </footer>
 
         </div>

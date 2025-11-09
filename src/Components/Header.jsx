@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import logoimg from '../assets/logo.png'
 
 const Header = () => {
@@ -52,7 +52,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className=" px-8  py-1.5 cursor-pointer rounded-xl bg-[#0528f2]">Login</a>
+          <Link to='/login' className=" px-8  py-1.5 cursor-pointer rounded-xl bg-[#0528f2]">Login</Link>
         </div>
       </div>
     </div>
