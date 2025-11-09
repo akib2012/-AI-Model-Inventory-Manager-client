@@ -1,18 +1,36 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import logoimg from '../assets/logo.png'
+import { useContext } from "react";
+import Authcontext from "../ContextAuth/Authcontext";
 
 const Header = () => {
+    
+  const {user, singout} = useContext(Authcontext);
+
+
     const links = <>
-       <li><NavLink>Home</NavLink></li>
-       <li><NavLink>Add Model</NavLink></li>
-       <li><NavLink>My Model</NavLink></li>
+       <li><NavLink to='/'>Home</NavLink></li>
+       <li><NavLink to='/addmodel'>Add Model</NavLink></li>
+       <li><NavLink>View Model</NavLink></li>
        <li><NavLink></NavLink></li>
 
        
     </>
+
+  const handlelogout = () => {
+
+    singout()
+    .then(res => console.log(res.user))
+    .catch(eror  => console.log(eror))
+
+  }
+
+
+
+
   return (
-    <div className="bg-[#000814]">
+    <div className="bg-[#000814] sticky">
       <div className="text-white navbar  max-w-10/12 m-auto shadow-md">
         <div className="navbar-start">
           <div className="dropdown">
@@ -51,9 +69,15 @@ const Header = () => {
             {links}
           </ul>
         </div>
-        <div className="navbar-end">
+        {
+          user ? 
+          <div className="navbar-end">
+          <button onClick={handlelogout}  className=" px-8  py-1.5 cursor-pointer rounded-xl bg-[#0528f2]">Logout</button>
+        </div>
+        : <div className="navbar-end">
           <Link to='/login' className=" px-8  py-1.5 cursor-pointer rounded-xl bg-[#0528f2]">Login</Link>
         </div>
+        }
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const Footer = () => {
 
             <i class="fa-brands fa-x-twitter fa-2x"></i>
           </a>
-          <Link ><i class="fa-brands fa-github fa-2x"></i></Link>
+          <Link to='https://github.com/akib2012'><i class="fa-brands fa-github fa-2x"></i></Link>
           <a href=""><i class="fa-brands fa-youtube fa-2x"></i></a>
           <a href=""><i class="fa-brands fa-facebook fa-2x"></i></a>
         </nav>
