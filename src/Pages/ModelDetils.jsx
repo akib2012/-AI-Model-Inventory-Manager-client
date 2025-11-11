@@ -4,6 +4,8 @@ import { useLoaderData } from 'react-router';
 const ModelDetils = () => {
 
     const {name, image,createdAt, purchased, useCase, description, framework, createdBy, dataset} = useLoaderData();
+
+    console.log(name, image,useCase)
    
     return (
         <div>

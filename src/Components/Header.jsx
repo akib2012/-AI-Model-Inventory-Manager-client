@@ -20,7 +20,9 @@ const Header = () => {
         <NavLink to="/viewsallmodels">View Model</NavLink>
       </li>
     </>
+
   );
+  
 
   const handlelogout = () => {
     singout()
@@ -58,7 +60,7 @@ const Header = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-[#1E293B] rounded-xl z-50 mt-3 w-52 p-3 shadow-lg"
               >
-                <li className="text-base font-medium">{links}</li>
+                {links}
               </ul>
             </div>
 
@@ -84,7 +86,6 @@ const Header = () => {
             {user ? (
               <div className="flex justify-center items-center gap-4">
                 <div className="flex items-center gap-4 relative">
-                 
                   <div className="relative group">
                     <img
                       src={user?.photoURL}
@@ -92,12 +93,11 @@ const Header = () => {
                       className="w-10 h-10 rounded-full border-2 border-[#274bfa] object-cover cursor-pointer"
                     />
 
-                    
                     <div className="absolute right-0 mt-2 w-56 bg-gray-800 text-gray-200 rounded-lg shadow-lg border border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
                       <div className="px-4 py-3 border-b border-gray-700">
                         <p className="font-semibold">{user?.displayName}</p>
                         <p className="text-sm text-gray-400 truncate">
-                         {user?.email}
+                          {user?.email}
                         </p>
                       </div>
                       <div className="flex flex-col py-2">
@@ -107,18 +107,17 @@ const Header = () => {
                         >
                           Model Purchase
                         </a>
-                        <a
-                          href="/my-models"
+                        <Link
+                          to="/my-models"
                           className="px-4 py-2 hover:bg-gray-700 transition"
                         >
                           My Models
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
 
-               
                 <button
                   onClick={handlelogout}
                   className="px-6 py-2 cursor-pointer rounded-xl bg-[#0528f2] hover:bg-[#274bfa] text-white font-semibold transition-all"

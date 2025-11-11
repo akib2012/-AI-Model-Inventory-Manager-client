@@ -9,6 +9,7 @@ import ModelDetils from "../Pages/ModelDetils";
 import AddnewModel from "../Pages/AddnewModel";
 import ViewsAllModels from "../Pages/ViewsAllModels";
 import PrivateRoute from "./PrivateRoute";
+import MyModels from "../Pages/MyModels";
 
 
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
                  loader: () => fetch('http://localhost:3000/models'),
                  element: <ViewsAllModels></ViewsAllModels>
 
+            },
+            {
+                path: '/my-models',
+                element: <PrivateRoute> <MyModels></MyModels></PrivateRoute>,
             }
         ]
 

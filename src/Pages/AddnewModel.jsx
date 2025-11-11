@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, useNavigate  } from "react-router";
 import { toast } from "react-toastify";
+import Authcontext from "../ContextAuth/Authcontext";
 
 const AddnewModel = () => {
+  const {user} = useContext(Authcontext)
   const navigate = useNavigate();
   const handleAddModel = (e) => {
     
@@ -131,6 +133,7 @@ const AddnewModel = () => {
           <input
             placeholder="Creator Email"
             name="cretoremail"
+            value={user?.email}
             className="bg-[#0F172A]/70 p-3 w-full rounded-lg border border-[#6C63FF]/30 text-gray-200"
           />
 

@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router";
 
 const ModelCard = ({ model }) => {
-  const {image, name, framework, description, id} = model;
+  const {image, name, framework, description, _id} = model;
+ 
   return (
     <div>
       <div class="relative flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md hover:scale-105">
@@ -16,7 +17,7 @@ const ModelCard = ({ model }) => {
           </p>
         </div>
         <div class="p-6 pt-0">
-          <Link to={`/models/${id}`}><button
+          <Link to={`/models/${_id}`}><button
             data-ripple-light="true"
             type="button"
             class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
