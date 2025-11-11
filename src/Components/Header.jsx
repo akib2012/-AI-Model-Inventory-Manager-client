@@ -6,6 +6,8 @@ import Authcontext from "../ContextAuth/Authcontext";
 const Header = () => {
   const { user, singout } = useContext(Authcontext);
 
+  console.log(user.displayName)
+
   const links = (
     <>
       <li>
@@ -80,12 +82,50 @@ const Header = () => {
 
           <div className="navbar-end">
             {user ? (
-              <button
-                onClick={handlelogout}
-                className="px-6 py-2 cursor-pointer rounded-xl bg-[#0528f2] hover:bg-[#274bfa] transition-all"
-              >
-                Logout
-              </button>
+              <div className="flex justify-center items-center gap-4">
+                <div className="flex items-center gap-4 relative">
+                 
+                  <div className="relative group">
+                    <img
+                      src={user.photoURL}
+                      alt="Profile"
+                      className="w-10 h-10 rounded-full border-2 border-[#274bfa] object-cover cursor-pointer"
+                    />
+
+                    
+                    <div className="absolute right-0 mt-2 w-56 bg-gray-800 text-gray-200 rounded-lg shadow-lg border border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                      <div className="px-4 py-3 border-b border-gray-700">
+                        <p className="font-semibold">{user.displayName}</p>
+                        <p className="text-sm text-gray-400 truncate">
+                         {user.email}
+                        </p>
+                      </div>
+                      <div className="flex flex-col py-2">
+                        <a
+                          href="/model-purchase"
+                          className="px-4 py-2 hover:bg-gray-700 transition"
+                        >
+                          Model Purchase
+                        </a>
+                        <a
+                          href="/my-models"
+                          className="px-4 py-2 hover:bg-gray-700 transition"
+                        >
+                          My Models
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+               
+                <button
+                  onClick={handlelogout}
+                  className="px-6 py-2 cursor-pointer rounded-xl bg-[#0528f2] hover:bg-[#274bfa] text-white font-semibold transition-all"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <Link
                 to="/login"
