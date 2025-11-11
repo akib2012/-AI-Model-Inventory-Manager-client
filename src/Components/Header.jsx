@@ -6,7 +6,7 @@ import Authcontext from "../ContextAuth/Authcontext";
 const Header = () => {
   const { user, singout } = useContext(Authcontext);
 
-  console.log(user.displayName)
+  // console.log(user.displayName)
 
   const links = (
     <>
@@ -87,7 +87,7 @@ const Header = () => {
                  
                   <div className="relative group">
                     <img
-                      src={user.photoURL}
+                      src={user?.photoURL}
                       alt="Profile"
                       className="w-10 h-10 rounded-full border-2 border-[#274bfa] object-cover cursor-pointer"
                     />
@@ -95,9 +95,9 @@ const Header = () => {
                     
                     <div className="absolute right-0 mt-2 w-56 bg-gray-800 text-gray-200 rounded-lg shadow-lg border border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
                       <div className="px-4 py-3 border-b border-gray-700">
-                        <p className="font-semibold">{user.displayName}</p>
+                        <p className="font-semibold">{user?.displayName}</p>
                         <p className="text-sm text-gray-400 truncate">
-                         {user.email}
+                         {user?.email}
                         </p>
                       </div>
                       <div className="flex flex-col py-2">
