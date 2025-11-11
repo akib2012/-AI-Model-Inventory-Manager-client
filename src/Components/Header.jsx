@@ -101,12 +101,12 @@ const Header = () => {
                         </p>
                       </div>
                       <div className="flex flex-col py-2">
-                        <a
-                          href="/model-purchase"
+                        <Link to='/my-Purchase'
+                          
                           className="px-4 py-2 hover:bg-gray-700 transition"
                         >
                           Model Purchase
-                        </a>
+                        </Link>
                         <Link
                           to="/my-models"
                           className="px-4 py-2 hover:bg-gray-700 transition"

@@ -2,35 +2,70 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Authcontext from "../ContextAuth/Authcontext";
 import LoadingSpinner from "../Components/LoadingSpinner";
-
+import { toast } from "react-toastify";
 
 const ModelDetils = () => {
   const { id } = useParams();
   const [model, setModel] = useState([]);
-  const {loading,setLoading, user} = useContext(Authcontext)
+  const { loading, setLoading, user } = useContext(Authcontext);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/models/${id}`,{
-      headers:{
-         authorization: `Bearer ${user?.accessToken}`
-      }
+    fetch(`http://localhost:3000/models/${id}`, {
+      headers: {
+        authorization: `Bearer ${user?.accessToken}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        setModel(data)
-        setLoading(false)
+        console.log(data);
+        setModel(data);
+        setLoading(false);
       });
-  }, [id,setModel, setLoading, user]);
+  }, [id, setModel, setLoading, user]);
 
-  console.log(model);
+  // console.log(mode/l)
 
-  const {name, image,createdAt, purchased, useCase, description, framework, createdBy, dataset} = model;
+  const handlepuchase = () => {
+    fetch("http://localhost:3000/my-Purchase", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...model, dowloded_by: user.email
+        
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+        toast.success("succesfully downloded")
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
- 
-if(loading){
-  <LoadingSpinner></LoadingSpinner>
-}
+  const {
+    name,
+    image,
+    createdAt,
+    purchased,
+    useCase,
+    description,
+    framework,
+    createdBy,
+    dataset,
+  } = model;
+
+  if (loading) {
+    <LoadingSpinner></LoadingSpinner>;
+  }
   return (
     <div>
       <div class="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E] py-10 px-4">
@@ -87,7 +122,10 @@ if(loading){
           </div>
 
           <div class="flex flex-wrap justify-center gap-4">
-            <button class="bg-[#00C9A7] text-[#0F172A] font-semibold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(0,201,167,0.5)] transition-all">
+            <button
+              onClick={handlepuchase}
+              class="bg-[#00C9A7] text-[#0F172A] font-semibold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(0,201,167,0.5)] transition-all"
+            >
               Purchase Model
             </button>
 

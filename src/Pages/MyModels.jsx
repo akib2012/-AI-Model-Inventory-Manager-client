@@ -9,7 +9,11 @@ const MyModels = () => {
   //   console.log(user?.email);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-models?email=${user.email}`)
+    fetch(`http://localhost:3000/my-models?email=${user.email}`,{
+        headers:{
+         authorization: `Bearer ${user?.accessToken}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -17,7 +21,7 @@ const MyModels = () => {
         setLoading(false);
       })
       .catch((err) => console.error("Error fetching models:", err));
-  }, [user?.email, setLoading, setMymodel]);
+  }, [user?.email, setLoading, setMymodel, user?.accessToken]);
 
   if (loading) {
     return <LoadingSpinner />;
