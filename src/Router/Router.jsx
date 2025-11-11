@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/models/:id',
-                loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`),
+                // loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`),
                 element: <PrivateRoute><ModelDetils></ModelDetils></PrivateRoute>,
             },
             {

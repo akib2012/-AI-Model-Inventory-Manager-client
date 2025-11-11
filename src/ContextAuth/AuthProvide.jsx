@@ -90,6 +90,8 @@ useEffect(() => {
     singout,
     updateprofile,
     loading,
+    setLoading,
+
   };
 
 
