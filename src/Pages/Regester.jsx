@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Authcontext from "../ContextAuth/Authcontext";
+import { toast } from "react-toastify";
 
 const Regester = () => {
   const { usersingup, googlesingup, updateprofile, user, setUser } =
     useContext(Authcontext);
+    const Navigate = useNavigate();
+    const location = useLocation();
+
+    console.log("testing for locaiton",location.state);
+
 
   const hadnleregester = (e) => {
     e.preventDefault();
@@ -18,7 +24,7 @@ const Regester = () => {
         console.log(res.user);
 
         /* updat profile here add just disply name and the photo url: */
-        updateprofile({ displayName: name, photoURL: photo }).then((res) => {
+        updateprofile({ displayName: name, photoURL: photo, email: email }).then((res) => {
           const userinfo = {
             user_name: name,
             user_mail: email,
@@ -33,8 +39,18 @@ const Regester = () => {
             body: JSON.stringify(userinfo),
           })
             .then((res) => res.json())
-            .then((data) => console.log("after getting regester", data))
-            .catch((error) => console.log(error));
+            .then((data) => {
+              console.log("after getting regester", data)
+              if(data.insertedId){
+                Navigate(location?.state || "/")
+                toast.success("regesterd succesfull !")
+
+              }
+            })
+            .catch((error) => {
+              console.log(error)
+              toast.error("something went wrong!!")
+            });
 
           const updateuser = {
             ...user,
@@ -66,7 +82,15 @@ const Regester = () => {
           body: JSON.stringify(newuser)
         })
         .then(res => res.json())
-        .then(result => console.log("after google login",result))
+        .then(result => {
+          console.log("after google login",result)
+          if(result.insertedId){
+                Navigate(location?.state || "/")
+                toast.success("regesterd succesfull !")
+
+              }
+
+        })
         
 
 

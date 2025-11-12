@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import logoimg from "../assets/logo.png";
 import Authcontext from "../ContextAuth/Authcontext";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Header = () => {
-  const { user, singout } = useContext(Authcontext);
+  const { user, singout , loading } = useContext(Authcontext);
 
-  // console.log(user.displayName)
+  // console.log("console log here user for testing: ", user)
+  if (loading) return <LoadingSpinner />;
 
   const links = (
     <>
@@ -29,6 +31,8 @@ const Header = () => {
       .then((res) => console.log(res.user))
       .catch((error) => console.log(error));
   };
+
+  
 
   return (
     <>

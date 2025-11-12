@@ -1,31 +1,42 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Authcontext from "../ContextAuth/Authcontext";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const {usersignin, googlesingup, user} = useContext(Authcontext);
-  console.log(user);
+  const { usersignin, googlesingup, user } = useContext(Authcontext);
+  const location = useLocation()
+  const navigate = useNavigate();
 
   const handlelogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-   
     usersignin(email, password)
-    .then(res => console.log(res.user))
-    .catch(error => console.log(error))
+      .then((res) => {
+        console.log(res.user);
+        navigate(location?.state || "/");
+        toast.success("Successfully login!");
+      })
+      .catch((error) => {
+        console.log(error);
+         toast.error("Something went wrong");
+      });
+  };
 
-
-  }
-
-  const googlesing  = () => {
+  const googlesing = () => {
     googlesingup()
-    .then(res => console.log(res.user))
-    .catch(error => console.log(error))
-
-  }
-
+      .then((res) => {
+        console.log(res.user)
+        navigate(location?.state || "/")
+         toast.success("Successfully login!");
+      })
+      .catch((error) => {
+        console.log(error)
+        toast.error("Something went wrong");
+      });
+  };
 
   return (
     <div className=" min-h-screen flex justify-center items-center bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E]">
@@ -34,7 +45,7 @@ const Login = () => {
           Login to AI Model Inventory Manager
         </h1>
 
-        <form onSubmit={handlelogin}  className="space-y-4 text-left">
+        <form onSubmit={handlelogin} className="space-y-4 text-left">
           <div>
             <label className="block mb-1 text-sm text-gray-300">Email</label>
             <input
@@ -74,7 +85,7 @@ const Login = () => {
 
         <div className="my-5 text-gray-400 text-sm">or</div>
 
-        <button 
+        <button
           onClick={googlesing}
           className="w-full flex items-center justify-center gap-2 bg-white text-[#0F172A] py-2 rounded-lg font-medium hover:bg-gray-200 transition-all"
         >
@@ -85,6 +96,7 @@ const Login = () => {
         <p className="mt-5 text-gray-400 text-sm">
           Don’t have an account?{" "}
           <Link
+           state={location?.state}
             to="/register"
             className="text-[#00C9A7] hover:text-[#6C63FF] transition-all"
           >

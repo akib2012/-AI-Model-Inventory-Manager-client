@@ -52,11 +52,9 @@ useEffect(() => {
         setLoading(false);
         
     })
-     return () => {
-      unsubcrive();
-    };
-
-
+     return () =>{
+            unsubcrive();
+        }
   }, [])
 
 
