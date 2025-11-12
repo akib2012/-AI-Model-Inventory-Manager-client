@@ -9,6 +9,20 @@ const Header = () => {
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const menuRef = useRef(null);
 
+
+  /* const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+  useEffect(() => {
+    const html = document.querySelector('html')
+     html.setAttribute("data-theme", theme)
+     localStorage.setItem("theme", theme)
+  }, [theme])
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark": "light")
+  } */
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -35,6 +49,14 @@ const Header = () => {
       <li>
         <NavLink to="/viewsallmodels">View Model</NavLink>
       </li>
+      {/* <li>
+        
+              <input 
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+      </li> */}
     </>
   );
 

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Getstrted = () => {
   return (
-    <div>
+    <div >
       <section className=" text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl font-bold mb-4">

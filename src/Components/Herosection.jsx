@@ -12,6 +12,8 @@ import '../Style/styles.css';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Slider from './Slider';
+import Slide2 from './Slide2';
+import Slide3 from './Slide3';
 
 
 const Herosection = () => {
@@ -32,8 +34,8 @@ const Herosection = () => {
         className="mySwiper"
       >
         <SwiperSlide><Slider></Slider></SwiperSlide>
-        <SwiperSlide><Slider></Slider></SwiperSlide>
-        <SwiperSlide><Slider></Slider></SwiperSlide>
+        <SwiperSlide><Slide2></Slide2></SwiperSlide>
+        <SwiperSlide><Slide3></Slide3></SwiperSlide>
         {/* <SwiperSlide>Slide 4</SwiperSlide>
         <SwiperSlide>Slide 5</SwiperSlide>
         <SwiperSlide>Slide 6</SwiperSlide>

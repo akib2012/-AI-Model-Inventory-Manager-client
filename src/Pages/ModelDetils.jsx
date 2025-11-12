@@ -10,8 +10,9 @@ const ModelDetils = () => {
   const [model, setModel] = useState([]);
   const { loading, setLoading, user } = useContext(Authcontext);
   const Navigate = useNavigate();
+  const [refech, setRefech] = useState(false)
 
-  console.log(model);
+  // console.log(model);
 
   // console.log("manage for show and hide edit and delete,", model);
 
@@ -27,15 +28,15 @@ const ModelDetils = () => {
         setModel(data);
         setLoading(false);
       });
-  }, [id, setModel, setLoading, user]);
+  }, [id, setModel, setLoading, user, refech]);
 
   // console.log(mode/l)
 
   const handlePurchase = () => {
-    fetch("http://localhost:3000/my-Purchase", {
+     fetch('http://localhost:3000/my-Purchase', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...model, downloaded_by: user.email }),
+      body: JSON.stringify({...model, downloaded_by: user.email}),
     })
       .then((response) => {
         if (!response.ok) {
@@ -46,16 +47,52 @@ const ModelDetils = () => {
       })
       .then((data) => {
         console.log("Purchase successful:", data);
+        // setRefech(!refech)
+        // toast.success("Model purchased successfully!");
+
+      })
+
+    const finalmodel = {
+      name: model.data,
+      framework: model.framework,
+      useCase: model.useCase,
+      dataset: model.dataset,
+      description: model.description,
+      image: model.image,
+      createdBy: model.createdBy,
+      createdAt: new Date(),
+      purchased: model.purchased,
+      dowloded_by: model.email,
+     
+      
+
+    }
+    fetch(`http://localhost:3000/my-Purchase/${model._id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(finalmodel),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Purchase successful:", data);
+        setRefech(!refech)
         toast.success("Model purchased successfully!");
+
       })
       .catch((error) => {
         console.error("Error purchasing model:", error);
-        toast.error("Failed to purchase model. Try again!");
+        toast.error("You’ve already purchased this model.");
       });
   };
 
 
-  
+
   const hnadleedit = () => {
     Navigate(`/edit-page/${model._id}`);
   };
