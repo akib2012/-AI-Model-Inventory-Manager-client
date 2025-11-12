@@ -11,6 +11,7 @@ import ViewsAllModels from "../Pages/ViewsAllModels";
 import PrivateRoute from "./PrivateRoute";
 import MyModels from "../Pages/MyModels";
 import Purchase from "../Pages/Purchase";
+import Editpage from "../Pages/Editpage";
 
 
 
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
                 path: '/my-Purchase',
                 element: <PrivateRoute><Purchase></Purchase></PrivateRoute>,
             },
+            {
+                path: '/edit-page/:id',
+                element: <PrivateRoute><Editpage></Editpage></PrivateRoute>,
+            },
+            
         ]
 
     },

@@ -18,6 +18,15 @@ const Regester = () => {
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 6 characters, include upper, lower, number & special character!"
+      );
+      return;
+    }
 
     usersingup(email, password)
       .then((res) => {

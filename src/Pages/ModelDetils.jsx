@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Authcontext from "../ContextAuth/Authcontext";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { toast } from "react-toastify";
@@ -8,6 +8,9 @@ const ModelDetils = () => {
   const { id } = useParams();
   const [model, setModel] = useState([]);
   const { loading, setLoading, user } = useContext(Authcontext);
+  const Navigate = useNavigate();
+
+  // console.log("manage for show and hide edit and delete,", model);
 
   useEffect(() => {
     fetch(`http://localhost:3000/models/${id}`, {
@@ -32,8 +35,8 @@ const ModelDetils = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ...model, dowloded_by: user.email
-        
+        ...model,
+        dowloded_by: user.email,
       }),
     })
       .then((response) => {
@@ -44,12 +47,19 @@ const ModelDetils = () => {
       })
       .then((data) => {
         console.log("Success:", data);
-        toast.success("succesfully downloded")
+        toast.success("succesfully Puchased");
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+
+    
+
   };
+  
+    const hnadleedit = () => {
+          Navigate(`/edit-page/${model._id}`);
+      }
 
   const {
     name,
@@ -62,6 +72,8 @@ const ModelDetils = () => {
     createdBy,
     dataset,
   } = model;
+
+  // const hidecondtion = user.email === model.createdBy;
 
   if (loading) {
     <LoadingSpinner></LoadingSpinner>;
@@ -129,12 +141,16 @@ const ModelDetils = () => {
               Purchase Model
             </button>
 
-            <button class="bg-[#6C63FF] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#7E75FF] transition-all">
-              Edit
-            </button>
-            <button class="bg-red-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-red-600 transition-all">
-              Delete
-            </button>
+            {user.email === model.createdBy && (
+              <div className="flex justify-center items-center gap-4">
+                <button onClick={hnadleedit} className="bg-[#6C63FF] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#7E75FF] transition-all">
+                  Edit
+                </button>
+                <button className="bg-red-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-red-600 transition-all">
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Authcontext from "../ContextAuth/Authcontext";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const MyModels = () => {
   const { user, loading, setLoading } = useContext(Authcontext);
@@ -17,6 +18,7 @@ const MyModels = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast.success("submit your model")
         setMymodel(data);
         setLoading(false);
       })

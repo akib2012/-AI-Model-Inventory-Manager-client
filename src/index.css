@@ -4,3 +4,10 @@
   themes: light --default, dark --prefersdark;
   themes: light --default;
  }
+
+
+
+
+ .active{
+    @apply text-blue-600 underline
+ }

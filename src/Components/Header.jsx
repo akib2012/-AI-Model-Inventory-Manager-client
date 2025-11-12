@@ -1,13 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import logoimg from "../assets/logo.png";
 import Authcontext from "../ContextAuth/Authcontext";
 import LoadingSpinner from "./LoadingSpinner";
 
 const Header = () => {
-  const { user, singout , loading } = useContext(Authcontext);
+  const { user, singout, loading } = useContext(Authcontext);
+  const [openProfileMenu, setOpenProfileMenu] = useState(false);
+  const menuRef = useRef(null);
 
-  // console.log("console log here user for testing: ", user)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenProfileMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   if (loading) return <LoadingSpinner />;
 
   const links = (
@@ -22,9 +36,7 @@ const Header = () => {
         <NavLink to="/viewsallmodels">View Model</NavLink>
       </li>
     </>
-
   );
-  
 
   const handlelogout = () => {
     singout()
@@ -32,19 +44,13 @@ const Header = () => {
       .catch((error) => console.log(error));
   };
 
-  
-
   return (
     <>
       <div className="z-10 mb-[-20px] fixed top-0 left-0 w-full bg-[#000814] shadow-md border-b border-[#1E293B]">
         <div className="text-white navbar max-w-6xl mx-auto px-4">
           <div className="navbar-start">
             <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
+              <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -69,11 +75,7 @@ const Header = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <img
-                className="w-10 h-10 rounded-full"
-                src={logoimg}
-                alt="Logo"
-              />
+              <img className="w-10 h-10 rounded-full" src={logoimg} alt="Logo" />
               <Link to="/" className="text-xl font-semibold text-white">
                 ModelTrack AI
               </Link>
@@ -89,37 +91,38 @@ const Header = () => {
           <div className="navbar-end">
             {user ? (
               <div className="flex justify-center items-center gap-4">
-                <div className="flex items-center gap-4 relative">
-                  <div className="relative group">
-                    <img
-                      src={user?.photoURL}
-                      alt="Profile"
-                      className="w-10 h-10 rounded-full border-2 border-[#274bfa] object-cover cursor-pointer"
-                    />
+                <div ref={menuRef} className="relative">
+                  <img
+                    src={user?.photoURL}
+                    alt="Profile"
+                    onClick={() => setOpenProfileMenu((prev) => !prev)}
+                    className="w-10 h-10 rounded-full border-2 border-[#274bfa] object-cover cursor-pointer"
+                  />
 
-                    <div className="absolute right-0 mt-2 w-56 bg-gray-800 text-gray-200 rounded-lg shadow-lg border border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
+                  {openProfileMenu && (
+                    <div className="absolute right-0 mt-2 w-56 bg-gray-800 text-gray-200 rounded-lg shadow-lg border border-gray-700 z-50">
                       <div className="px-4 py-3 border-b border-gray-700">
                         <p className="font-semibold">{user?.displayName}</p>
-                        <p className="text-sm text-gray-400 truncate">
-                          {user?.email}
-                        </p>
+                        <p className="text-sm text-gray-400 truncate">{user?.email}</p>
                       </div>
                       <div className="flex flex-col py-2">
-                        <Link to='/my-Purchase'
-                          
+                        <Link
+                          to="/my-Purchase"
                           className="px-4 py-2 hover:bg-gray-700 transition"
+                          onClick={() => setOpenProfileMenu(false)}
                         >
                           Model Purchase
                         </Link>
                         <Link
                           to="/my-models"
                           className="px-4 py-2 hover:bg-gray-700 transition"
+                          onClick={() => setOpenProfileMenu(false)}
                         >
                           My Models
                         </Link>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 <button
