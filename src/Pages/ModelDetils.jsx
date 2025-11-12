@@ -52,14 +52,30 @@ const ModelDetils = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-
-    
-
   };
-  
-    const hnadleedit = () => {
-          Navigate(`/edit-page/${model._id}`);
-      }
+
+  const hnadleedit = () => {
+    Navigate(`/edit-page/${model._id}`);
+  };
+
+  /// delet operaction here
+
+  const handledelte = () => {
+    fetch(`http://localhost:3000/models/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success(" Model deleted successfully!");
+          Navigate('/viewsallmodels')
+          
+        } else {
+          toast.error("Failed to delete model!");
+        }
+      })
+      .catch((error) => console.error("Error deleting model:", error));
+  };
 
   const {
     name,
@@ -143,10 +159,16 @@ const ModelDetils = () => {
 
             {user.email === model.createdBy && (
               <div className="flex justify-center items-center gap-4">
-                <button onClick={hnadleedit} className="bg-[#6C63FF] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#7E75FF] transition-all">
+                <button
+                  onClick={hnadleedit}
+                  className="bg-[#6C63FF] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#7E75FF] transition-all"
+                >
                   Edit
                 </button>
-                <button className="bg-red-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-red-600 transition-all">
+                <button
+                  onClick={handledelte}
+                  className="bg-red-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-red-600 transition-all"
+                >
                   Delete
                 </button>
               </div>
