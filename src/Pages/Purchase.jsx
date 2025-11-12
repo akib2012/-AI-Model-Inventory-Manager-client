@@ -8,7 +8,7 @@ const Purchase = () => {
     const { user, loading, setLoading } = useContext(Authcontext);
       const [purchase, setPurchase] = useState([]);
     
-      //   console.log(user?.email);
+      
     
       useEffect(() => {
         fetch(`http://localhost:3000/my-Purchase?email=${user.email}`,{

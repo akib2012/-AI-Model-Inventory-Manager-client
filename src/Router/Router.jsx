@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import MyModels from "../Pages/MyModels";
 import Purchase from "../Pages/Purchase";
 import Editpage from "../Pages/Editpage";
+import Errorpage from "../Pages/Errorpage";
 
 
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element:<RootLayout></RootLayout>,
+        // errorElement: <Errorpage></Errorpage>,
         children: [
             {
                 index: true,
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path: '/edit-page/:id',
                 element: <PrivateRoute><Editpage></Editpage></PrivateRoute>,
+            },
+            {
+               path: '*',
+               element: <Errorpage></Errorpage>,
             },
             
         ]

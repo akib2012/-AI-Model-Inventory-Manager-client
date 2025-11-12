@@ -78,7 +78,7 @@ const Editpage = () => {
         Edit Model Page
       </h3>
 
-      <div className="bg-[#1E293B]/80 backdrop-blur-xl border-2 border-amber-400 shadow-[0_0_25px_rgba(251,191,36,0.6)] rounded-2xl p-8 w-full max-w-2xl text-gray-200 mx-auto transition-all duration-300 hover:shadow-[0_0_35px_rgba(251,191,36,0.9)]">
+      <div className="my-17  bg-[#1E293B]/80 backdrop-blur-xl border-2 border-amber-400 shadow-[0_0_25px_rgba(251,191,36,0.6)] rounded-2xl p-8 w-full max-w-2xl text-gray-200 mx-auto transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,191,36,0.9)]">
         <h1 className="text-3xl font-bold text-[#6C63FF] text-center mb-6">
           Edit Model
         </h1>

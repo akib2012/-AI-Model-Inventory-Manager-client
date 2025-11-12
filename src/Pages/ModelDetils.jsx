@@ -3,12 +3,15 @@ import { useNavigate, useParams } from "react-router";
 import Authcontext from "../ContextAuth/Authcontext";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { toast } from "react-toastify";
+import Errorpage from "./Errorpage";
 
 const ModelDetils = () => {
   const { id } = useParams();
   const [model, setModel] = useState([]);
   const { loading, setLoading, user } = useContext(Authcontext);
   const Navigate = useNavigate();
+
+  console.log(model);
 
   // console.log("manage for show and hide edit and delete,", model);
 
@@ -28,32 +31,31 @@ const ModelDetils = () => {
 
   // console.log(mode/l)
 
-  const handlepuchase = () => {
+  const handlePurchase = () => {
     fetch("http://localhost:3000/my-Purchase", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...model,
-        dowloded_by: user.email,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...model, downloaded_by: user.email }),
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
-        toast.success("succesfully Puchased");
+        console.log("Purchase successful:", data);
+        toast.success("Model purchased successfully!");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error purchasing model:", error);
+        toast.error("Failed to purchase model. Try again!");
       });
   };
 
+
+  
   const hnadleedit = () => {
     Navigate(`/edit-page/${model._id}`);
   };
@@ -68,8 +70,7 @@ const ModelDetils = () => {
       .then((data) => {
         if (data.deletedCount > 0) {
           toast.success(" Model deleted successfully!");
-          Navigate('/viewsallmodels')
-          
+          Navigate("/viewsallmodels");
         } else {
           toast.error("Failed to delete model!");
         }
@@ -94,6 +95,12 @@ const ModelDetils = () => {
   if (loading) {
     <LoadingSpinner></LoadingSpinner>;
   }
+  // console.log(model)
+
+  /* if (!model.id) {
+    return <Errorpage />;
+  } */
+
   return (
     <div>
       <div class="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E] py-10 px-4">
@@ -151,7 +158,7 @@ const ModelDetils = () => {
 
           <div class="flex flex-wrap justify-center gap-4">
             <button
-              onClick={handlepuchase}
+              onClick={handlePurchase}
               class="bg-[#00C9A7] text-[#0F172A] font-semibold px-6 py-2 rounded-lg hover:shadow-[0_0_15px_rgba(0,201,167,0.5)] transition-all"
             >
               Purchase Model
@@ -179,5 +186,7 @@ const ModelDetils = () => {
     </div>
   );
 };
+
+//  return <Errorpage></Errorpage>;
 
 export default ModelDetils;

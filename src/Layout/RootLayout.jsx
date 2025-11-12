@@ -1,24 +1,24 @@
-import React from 'react';
-import Header from '../Components/Header';
-import { Outlet } from 'react-router';
-import Footer from '../Components/Footer';
+import React from "react";
+import Header from "../Components/Header";
+import { Outlet } from "react-router";
+import Footer from "../Components/Footer";
 
 const RootLayout = () => {
-    return (
-        <div className='bg-black'>
-          <header>
-              <Header></Header>
-          </header>
-          <main>
-            <Outlet></Outlet>
-          </main>
+  return (
+    <div className="bg-black flex flex-col min-h-screen">
+      <header>
+        <Header />
+      </header>
 
-          <footer>
-             <Footer></Footer>
-          </footer>
+      <main className="flex-1">
+        <Outlet />
+      </main>
 
-        </div>
-    );
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  );
 };
 
 export default RootLayout;

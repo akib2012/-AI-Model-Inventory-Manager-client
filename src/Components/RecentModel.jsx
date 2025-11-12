@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React, { useEffect, useState } from 'react';
 import ModelCard from './ModelCard';
 
@@ -6,16 +6,15 @@ const RecentModel = () => {
     const [models, setModels] = useState([]);
 
    useEffect(() => {
-
-     axios('http://localhost:3000/recent-model')
+  fetch('http://localhost:3000/recent-model')
+    .then(res => res.json())
     .then(data => {
-        console.log(data.data);
-        setModels(data.data);
-
-
+      console.log(data); // check what the API returns
+      setModels(data.data ? data.data : data); // fallback if data is an array
     })
+    .catch(err => console.error("Error fetching recent models:", err));
+}, []);
 
-   } , [])
     return (
         <div>
             <h4 className='text-center text-3xl font-bold py-6'>most recently added </h4>
