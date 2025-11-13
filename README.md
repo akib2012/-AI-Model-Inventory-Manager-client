@@ -1,10 +1,10 @@
 🧠 AI Model Inventory Manager
 
-Live Site URL: https://your-live-site-link.netlify.app
+Live Site URL: https://monumental-bubblegum-b4460a.netlify.app/
 
-Client Repository: https://github.com/yourusername/ai-model-inventory-client
+Client Repository: https://github.com/akib2012/-AI-Model-Inventory-Manager-client.git
 
-Server Repository: https://github.com/yourusername/ai-model-inventory-server
+Server Repository: https://github.com/akib2012/model-inventory-server-final.git
 
 📘 Project Overview
 
