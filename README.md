@@ -1,16 +1,147 @@
-# React + Vite
+🧠 AI Model Inventory Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Site URL: https://your-live-site-link.netlify.app
 
-Currently, two official plugins are available:
+Client Repository: https://github.com/yourusername/ai-model-inventory-client
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Server Repository: https://github.com/yourusername/ai-model-inventory-server
 
-## React Compiler
+📘 Project Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The AI Model Inventory Manager is a full-stack web application designed to help users manage an inventory of AI models. It allows authenticated users to add, view, edit, delete, and purchase AI models while showcasing information such as the model’s framework, dataset, use case, and description.
 
-## Expanding the ESLint configuration
+This project connects React.js, Firebase Authentication, and MongoDB (via Express.js backend), creating a practical learning experience that mirrors real-world AI model management systems like Hugging Face and Model Zoo.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🚀 Live Features
+✅ User Authentication (Email/Password + Google Sign-In)
+✅ Private Routes Protection — reload-safe authentication
+✅ CRUD Operations with MongoDB (Add, View, Edit, Delete)
+✅ Purchase System with real-time purchase counter updates
+✅ Search & Filter AI Models by Framework or Name
+✅ My Models & My Purchases section for logged-in users
+✅ Responsive Design for all devices (mobile, tablet, desktop)
+✅ Dark/Light Mode Toggle across the entire website
+✅ Dynamic Featured Models and Custom Error Page
+✅ Deployed — Client on Netlify / Server on Vercel
+
+💡 Why This Project?
+
+This project bridges Web Development and Artificial Intelligence, providing hands-on experience with tools used by AI practitioners.
+It simulates how AI models are cataloged and managed in real-world platforms like Hugging Face, making it educational, relevant, and practical.
+
+🧩 Technologies Used
+🖥️ Frontend:
+
+React.js (Vite)
+
+React Router
+
+Firebase Authentication
+
+Tailwind CSS
+
+React Toastify
+
+React Icons / Lucide React
+
+Axios for API calls
+
+⚙️ Backend:
+
+Node.js
+
+Express.js
+
+MongoDB (Atlas)
+
+dotenv (for environment variables)
+
+Cors & Body-parser middleware
+
+🧰 Others:
+
+ImgBB API for image hosting
+
+Netlify (Client Hosting)
+
+Vercel (Server Hosting)
+
+🧠 Core Pages Overview
+Page	Route	Description
+Home	/	Slider, Featured AI Models, About & Get Started sections
+Add Model	/add-model	Add new AI models (Private)
+All Models	/models	View all models with filter & search
+Model Details	/models/:id	View details, purchase count, edit/delete if creator
+My Models	/my-models	Shows models created by logged-in user
+My Purchases	/my-purchases	Shows models purchased by logged-in user
+Login/Register	/login, /register	Firebase authentication
+Error Page	*	Custom 404 with navigation link
+
+
+🔐 Authentication Flow
+
+Firebase Authentication handles login/registration.
+
+Google Sign-In supported.
+
+Logged-in users remain authenticated even on route reload.
+
+Only creators can edit/delete their models.
+
+Operation	Route	Method	Description
+Add Model	/add-model	POST	Adds new model to MongoDB
+Get All Models	/models	GET	Fetch all models
+Get Model by ID	/models/:id	GET	Fetch single model details
+Update Model	/update-model/:id	PUT	Update model (creator only)
+Delete Model	/models/:id	DELETE	Delete model (creator only)
+Purchase Model	/purchase/:id	PATCH	Increment purchase count and save to purchase list
+
+🌗 UI & Design Highlights
+
+Modern, Glassmorphism + Gradient UI
+
+Consistent font styles, button designs, and color scheme
+
+Equal card height & responsive grid layouts
+
+Smooth hover effects and transitions
+
+Built fully with Tailwind CSS
+
+Dark/Light theme toggle with full-site effect
+
+🧮 Bonus Implementations (Challenge Features)
+
+✅ Filter models by Framework (multi-select)
+
+✅ Search by Model Name
+
+✅ Purchase Counter updates in real-time
+
+✅ Custom Loading Spinner on data fetch
+
+✅ Toast notifications (no default alert used)
+
+# Client
+git clone https://github.com/yourusername/ai-model-inventory-client.git
+cd ai-model-inventory-client
+npm install
+npm run dev
+
+# Server
+git clone https://github.com/yourusername/ai-model-inventory-server.git
+cd ai-model-inventory-server
+npm install
+npm start
+
+
+🧑‍💻 Author
+
+Perbej Bhuiyan Akib
+
+📧 Email: akibbbhuiyan3544@gmail.com
+
+🔗 GitHub: https://github.com/akib2012
+
+🌐 Portfolio: https://akib2012.github.io/protfolio_project_central/
+
