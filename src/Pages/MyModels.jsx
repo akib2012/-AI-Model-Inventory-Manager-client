@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import Authcontext from "../ContextAuth/Authcontext";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { toast } from "react-toastify";
+import { Link } from "react-router";
 
 const MyModels = () => {
   const { user, loading, setLoading } = useContext(Authcontext);
   const [mymodel, setMymodel] = useState([]);
-
+  console.log(mymodel)
   //   console.log(user?.email);
 
   useEffect(() => {
@@ -51,6 +52,13 @@ const MyModels = () => {
               <div className="flex-1 text-white">{model.framework}</div>
               <div className="flex-1 text-white">{model.useCase}</div>
               <div className="flex-1 text-white">{model.createdBy}</div>
+              <Link to={`/models/${model._id}`}><button
+                          data-ripple-light="true"
+                          type="button"
+                          class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        >
+                          View Details
+                        </button></Link>
             </div>
           </div>
         ))
