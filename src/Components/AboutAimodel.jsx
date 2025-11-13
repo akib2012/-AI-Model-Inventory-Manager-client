@@ -3,7 +3,7 @@ import React from "react";
 const AboutAimodel = () => {
   return (
     <div data-aos="zoom-in-right" className="max-w-10/12 m-auto pb-9">
-      <h3 className="text-center text-2xl font-bold">About Ai model</h3>
+      <h3 className="text-center text-2xl font-bold text-black">About Ai model</h3>
       <div className="grid md:grid-cols-3 gap-6 mt-10">
         <div data-aos="zoom-in-right" className="bg-[#1E293B] p-6 rounded-xl shadow hover:shadow-[0_0_10px_rgba(108,99,255,0.3)]">
           <h3 className="text-[#00C9A7] text-xl font-semibold mb-2">

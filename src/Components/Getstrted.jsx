@@ -22,7 +22,7 @@ const Getstrted = () => {
               Get Started
             </Link> */}
             <Link
-              to="/login"
+              to="/ViewsAllModels"
               className="border border-white text-white  px-6 py-3 font-bold rounded-xl hover:bg-white hover:text-[#001D6E] transition-all duration-300"
             >
               Get Started

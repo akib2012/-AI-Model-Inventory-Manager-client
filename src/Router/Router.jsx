@@ -14,65 +14,81 @@ import Purchase from "../Pages/Purchase";
 import Editpage from "../Pages/Editpage";
 import Errorpage from "../Pages/Errorpage";
 
-
-
-
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element:<RootLayout></RootLayout>,
-        // errorElement: <Errorpage></Errorpage>,
-        children: [
-            {
-                index: true,
-                element: <Homepage></Homepage>, 
-            },
-            {
-                path: '/login',
-                element: <Login></Login>,
-            },
-            {
-                path: '/register',
-                element: <Regester></Regester>,
-            },
-            {
-                path: '/models/:id',
-                // loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`),
-                element: <PrivateRoute><ModelDetils></ModelDetils></PrivateRoute>,
-            },
-            {
-                path: '/addmodel',
-               
-                element: <PrivateRoute><AddnewModel></AddnewModel></PrivateRoute>,
-            },
-            {
-                path: '/viewsallmodels',
-                 loader: () => fetch('http://localhost:3000/models'),
-                 element: <ViewsAllModels></ViewsAllModels>
+  {
+    path: "/",
+    element: <RootLayout></RootLayout>,
+    // errorElement: <Errorpage></Errorpage>,
+    children: [
+      {
+        index: true,
+        element: <Homepage></Homepage>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Regester></Regester>,
+      },
+      {
+        path: "/models/:id",
+        // loader: ({params}) => fetch(`https://ai-model-inventory-manager-server-ten.vercel.app/models/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <ModelDetils></ModelDetils>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addmodel",
 
-            },
-            {
-                path: '/my-models',
-                element: <PrivateRoute> <MyModels></MyModels></PrivateRoute>,
-            },
-            {
-                path: '/my-Purchase',
-                element: <PrivateRoute><Purchase></Purchase></PrivateRoute>,
-            },
-            {
-                path: '/edit-page/:id',
-                element: <PrivateRoute><Editpage></Editpage></PrivateRoute>,
-            },
-            {
-               path: '*',
-               element: <Errorpage></Errorpage>,
-            },
-            
-        ]
-
-    },
-
+        element: (
+          <PrivateRoute>
+            <AddnewModel></AddnewModel>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/viewsallmodels",
+        loader: () =>
+          fetch(
+            "https://ai-model-inventory-manager-server-ten.vercel.app/models"
+          ),
+        element: <ViewsAllModels></ViewsAllModels>,
+      },
+      {
+        path: "/my-models",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <MyModels></MyModels>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-Purchase",
+        element: (
+          <PrivateRoute>
+            <Purchase></Purchase>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/edit-page/:id",
+        element: (
+          <PrivateRoute>
+            <Editpage></Editpage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "*",
+        element: <Errorpage></Errorpage>,
+      },
+    ],
+  },
 ]);
-
 
 export default router;

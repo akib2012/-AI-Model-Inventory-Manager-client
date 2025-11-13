@@ -107,7 +107,7 @@ const Header = () => {
                 src={logoimg}
                 alt="Logo"
               />
-              <Link to="/" className="text-xl font-semibold text-white">
+              <Link to="/" className=" hidden md:block  text-xl font-semibold text-white">
                 ModelTrack AI
               </Link>
             </div>

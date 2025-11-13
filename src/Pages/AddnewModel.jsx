@@ -1,16 +1,14 @@
 import React, { useContext } from "react";
-import { Navigate, useNavigate  } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Authcontext from "../ContextAuth/Authcontext";
 
 const AddnewModel = () => {
-  const {user} = useContext(Authcontext)
+  const { user } = useContext(Authcontext);
   const navigate = useNavigate();
   const handleAddModel = (e) => {
-    
     e.preventDefault();
     // const navigate = Naviga/'/'?te()
-     
 
     const name = e.target.modelname.value;
     const framework = e.target.framework.value;
@@ -46,49 +44,40 @@ const AddnewModel = () => {
     //   purchased: purchased,
     // }
 
-
-
-
-
-    fetch('http://localhost:3000/models', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-
-    name: name,
-      framework: framework,
-      useCase: usecase,
-      dataset: dataset,
-      description: description,
-      image: modelimg,
-      createdBy: cretoremail,
-      createdAt: createdAt,
-      purchased: purchased,
-    
-  })
-})
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-   if (data.insertedId) {
+    fetch("https://ai-model-inventory-manager-server-ten.vercel.app/models", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        framework: framework,
+        useCase: usecase,
+        dataset: dataset,
+        description: description,
+        image: modelimg,
+        createdBy: cretoremail,
+        createdAt: createdAt,
+        purchased: purchased,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
           toast.success("✅ You added a new model!");
           e.target.reset();
-          navigate('/viewsallmodels')
-          
+          navigate("/viewsallmodels");
         } else {
           toast.error("⚠️ Failed to add model, try again.");
         }
-  })
-  .catch(error => console.error('Error:', error));
-
-
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
     <div className="my-12">
-      <div className="bg-[#1E293B]/70 backdrop-blur-lg rounded-2xl shadow-lg w-full p-8 text-gray-200 border-2 border-amber-300 shadow-amber-50 mx-5 max-w-fit md:max-w-6/12 md:m-auto">
+      <div className="backdrop-blur-lg rounded-2xl shadow-3xl w-full p-8 text-gray-200 border-2 border-amber-300 shadow-amber-500 mx-5 max-w-fit md:max-w-6/12 md:m-auto">
         <h1 className="text-3xl font-bold text-[#6C63FF] mb-6 text-center">
           Add New Model
         </h1>

@@ -7,20 +7,23 @@ import { toast } from "react-toastify";
 const Editpage = () => {
   const { id } = useParams();
   const [model, setModel] = useState({});
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   const { user } = useContext(Authcontext);
   const navigate = useNavigate();
 
   // Fetch model data
   useEffect(() => {
-    if (!user?.accessToken) return; 
+    if (!user?.accessToken) return;
 
     setLoading(true);
-    fetch(`http://localhost:3000/models/${id}`, {
-      headers: {
-        authorization: `Bearer ${user.accessToken}`,
-      },
-    })
+    fetch(
+      `https://ai-model-inventory-manager-server-ten.vercel.app/models/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setModel(data);
@@ -45,16 +48,19 @@ const Editpage = () => {
       purchased: model.purchased || 0,
     };
 
-    fetch(`http://localhost:3000/models/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newModel),
-    })
+    fetch(
+      `https://ai-model-inventory-manager-server-ten.vercel.app/models/${id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newModel),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("✅ Model updated successfully!");
-          navigate(`/models/${id}`); 
+          navigate(`/models/${id}`);
         } else {
           toast.warning("⚠️ No changes detected.");
         }
@@ -70,7 +76,8 @@ const Editpage = () => {
     return <LoadingSpinner />;
   }
 
-  const { name, image, purchased, useCase, description, framework, dataset } = model;
+  const { name, image, purchased, useCase, description, framework, dataset } =
+    model;
 
   return (
     <div>
@@ -86,7 +93,9 @@ const Editpage = () => {
         <form onSubmit={handledit} className="space-y-6">
           {/* Image URL */}
           <div className="border-2 border-indigo-400 rounded-xl p-4 flex flex-col items-center justify-center bg-[#0F172A]/50">
-            <label className="text-gray-300 mb-2 font-semibold">Model Image</label>
+            <label className="text-gray-300 mb-2 font-semibold">
+              Model Image
+            </label>
             <input
               type="text"
               defaultValue={image}
@@ -145,7 +154,9 @@ const Editpage = () => {
               />
             </div>
             <div>
-              <label className="text-gray-300 font-semibold">Purchased Count</label>
+              <label className="text-gray-300 font-semibold">
+                Purchased Count
+              </label>
               <input
                 readOnly
                 value={purchased || 0}

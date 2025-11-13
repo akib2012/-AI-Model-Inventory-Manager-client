@@ -1,30 +1,33 @@
-
-import React, { useEffect, useState } from 'react';
-import ModelCard from './ModelCard';
+import React, { useEffect, useState } from "react";
+import ModelCard from "./ModelCard";
 
 const RecentModel = () => {
-    const [models, setModels] = useState([]);
+  const [models, setModels] = useState([]);
 
-   useEffect(() => {
-  fetch('http://localhost:3000/recent-model')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data); // check what the API returns
-      setModels(data.data ? data.data : data); // fallback if data is an array
-    })
-    .catch(err => console.error("Error fetching recent models:", err));
-}, []);
+  useEffect(() => {
+    fetch(
+      "https://ai-model-inventory-manager-server-ten.vercel.app/recent-model"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data); // check what the API returns
+        setModels(data.data ? data.data : data); // fallback if data is an array
+      })
+      .catch((err) => console.error("Error fetching recent models:", err));
+  }, []);
 
-    return (
-        <div>
-            <h4 className='text-center text-3xl font-bold py-6'>most recently added </h4>
-            <div  className='max-w-10/12 m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-5 my-13 pb-6'>
-                {
-                    models.map(model => <ModelCard model={model} key={model.id}></ModelCard>)
-                }
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <h4 className="text-center text-3xl font-bold py-6 text-black">
+        most recently added{" "}
+      </h4>
+      <div className="max-w-10/12 m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-11 gap-x-5 my-13 pb-6">
+        {models.map((model) => (
+          <ModelCard model={model} key={model.id}></ModelCard>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default RecentModel;

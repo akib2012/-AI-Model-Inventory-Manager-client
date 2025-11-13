@@ -97,6 +97,7 @@ const Login = () => {
           Don’t have an account?{" "}
           <Link
            state={location?.state}
+           
             to="/register"
             className="text-[#00C9A7] hover:text-[#6C63FF] transition-all"
           >

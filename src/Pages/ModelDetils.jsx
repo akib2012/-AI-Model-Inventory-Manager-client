@@ -10,18 +10,21 @@ const ModelDetils = () => {
   const [model, setModel] = useState([]);
   const { loading, setLoading, user } = useContext(Authcontext);
   const Navigate = useNavigate();
-  const [refech, setRefech] = useState(false)
+  const [refech, setRefech] = useState(false);
 
   // console.log(model);
 
   // console.log("manage for show and hide edit and delete,", model);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/models/${id}`, {
-      headers: {
-        authorization: `Bearer ${user?.accessToken}`,
-      },
-    })
+    fetch(
+      `https://ai-model-inventory-manager-server-ten.vercel.app/models/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${user?.accessToken}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -30,28 +33,9 @@ const ModelDetils = () => {
       });
   }, [id, setModel, setLoading, user, refech]);
 
-  // console.log(mode/l)
+  console.log(model);
 
   const handlePurchase = () => {
-     fetch('http://localhost:3000/my-Purchase', {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({...model, downloaded_by: user.email}),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Purchase successful:", data);
-        // setRefech(!refech)
-        // toast.success("Model purchased successfully!");
-
-      })
-
     const finalmodel = {
       name: model.data,
       framework: model.framework,
@@ -62,12 +46,34 @@ const ModelDetils = () => {
       createdBy: model.createdBy,
       createdAt: new Date(),
       purchased: model.purchased,
-      dowloded_by: model.email,
-     
-      
+      dowloded_by: user.email,
+    };
+    console.log(finalmodel);
+    fetch(
+      `https://ai-model-inventory-manager-server-ten.vercel.app/my-Purchase/${model._id}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(finalmodel),
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Purchase successful:", data);
+        setRefech(!refech);
+        toast.success("Model purchased successfully!");
+      })
+      .catch((error) => {
+        console.error("Error purchasing model:", error);
+        toast.error("You’ve already purchased this model.");
+      });
 
-    }
-    fetch(`http://localhost:3000/my-Purchase/${model._id}`, {
+    /* fetch('https://ai-model-inventory-manager-server-ten.vercel.app/my-Purchase', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(finalmodel),
@@ -81,17 +87,10 @@ const ModelDetils = () => {
       })
       .then((data) => {
         console.log("Purchase successful:", data);
-        setRefech(!refech)
-        toast.success("Model purchased successfully!");
+        
 
-      })
-      .catch((error) => {
-        console.error("Error purchasing model:", error);
-        toast.error("You’ve already purchased this model.");
-      });
+      }) */
   };
-
-
 
   const hnadleedit = () => {
     Navigate(`/edit-page/${model._id}`);
@@ -100,9 +99,12 @@ const ModelDetils = () => {
   /// delet operaction here
 
   const handledelte = () => {
-    fetch(`http://localhost:3000/models/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://ai-model-inventory-manager-server-ten.vercel.app/models/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

@@ -6,11 +6,10 @@ import { toast } from "react-toastify";
 const Regester = () => {
   const { usersingup, googlesingup, updateprofile, user, setUser } =
     useContext(Authcontext);
-    const Navigate = useNavigate();
-    const location = useLocation();
+  const Navigate = useNavigate();
+  const location = useLocation();
 
-    console.log("testing for locaiton",location.state);
-
+  console.log("testing for locaiton", location.state);
 
   const hadnleregester = (e) => {
     e.preventDefault();
@@ -33,32 +32,38 @@ const Regester = () => {
         console.log(res.user);
 
         /* updat profile here add just disply name and the photo url: */
-        updateprofile({ displayName: name, photoURL: photo, email: email }).then((res) => {
+        updateprofile({
+          displayName: name,
+          photoURL: photo,
+          email: email,
+        }).then((res) => {
           const userinfo = {
             user_name: name,
             user_mail: email,
             user_photo: photo,
           };
 
-          fetch("http://localhost:3000/users", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userinfo),
-          })
+          fetch(
+            "https://ai-model-inventory-manager-server-ten.vercel.app/users",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userinfo),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
-              console.log("after getting regester", data)
-              if(data.insertedId){
-                Navigate(location?.state || "/")
-                toast.success("regesterd succesfull !")
-
+              console.log("after getting regester", data);
+              if (data.insertedId) {
+                Navigate(location?.state || "/");
+                toast.success("regesterd succesfull !");
               }
             })
             .catch((error) => {
-              console.log(error)
-              toast.error("something went wrong!!")
+              console.log(error);
+              toast.error("something went wrong!!");
             });
 
           const updateuser = {
@@ -83,34 +88,31 @@ const Regester = () => {
           user_photo: res.user.photoURL,
         };
 
-        fetch('http://localhost:3000/users',{
-          method: 'POST',
-          headers:{
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newuser)
-        })
-        .then(res => res.json())
-        .then(result => {
-          console.log("after google login",result)
-          if(result.insertedId){
-                Navigate(location?.state || "/")
-                toast.success("regesterd succesfull !")
-
-              }
-
-        })
-        
-
-
-
+        fetch(
+          "https://ai-model-inventory-manager-server-ten.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newuser),
+          }
+        )
+          .then((res) => res.json())
+          .then((result) => {
+            console.log("after google login", result);
+            if (result.insertedId) {
+              Navigate(location?.state || "/");
+              toast.success("regesterd succesfull !");
+            }
+          });
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <div>
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E] mt-6 py-7">
+      <div className="min-h-screen  flex justify-center items-center bg-gradient-to-br from-[#000814] via-[#000814] to-[#001D6E]  py-17">
         <div className="bg-[#1E293B]/70 backdrop-blur-lg p-8 rounded-2xl shadow-lg w-[90%] sm:w-[400px] text-center border-2 border-amber-300 shadow-amber-50">
           <h1 className="text-2xl font-bold mb-6 text-[#6C63FF]">
             Register for AI Model Inventory Manager

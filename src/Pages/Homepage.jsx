@@ -13,7 +13,7 @@ const Homepage = () => {
         <Getstrted></Getstrted>
       </div>
 
-      <div className="bg-black">
+      <div >
             <RecentModel></RecentModel>
             <AboutAimodel></AboutAimodel>
           
